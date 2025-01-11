@@ -62,18 +62,31 @@ class superHeroes {
         console.log(this.superheroes.get(i)["name"]);
       }
     }
+    superheroeMasFuerte(){
+      var maxValue = 0
+      var superHeroeID = 0
+      for(let i=1; i<=this.superheroes.size; i++){
+        if(maxValue< this.superheroes.get(i)["strength"]){
+          maxValue = this.superheroes.get(i)["strength"];
+          superHeroeID= i;
+        }else{
+          continue
+        }
+      }
+      console.log(`El súperheroe más fuerte es ${this.superheroes.get(superheroeID)["name"]} con una fuerza de ${this.superheroes.get(superHeroeID)["strength"]}`)
+    }
 }
 
 
 const superHeroeContainer =  new superHeroes();
 
-superHeroeContainer.addSuperHeroe(1,"Iron Man", "Marvel", "SuperSuit", "50");
-superHeroeContainer.addSuperHeroe(2, "Batman", "DC", "Wealth", "26");
-superHeroeContainer.addSuperHeroe(3, "Aquaman", "DC", "Breathe in water", "40");
-superHeroeContainer.addSuperHeroe(4,"SpiderMan", "Marvel", "Spidersense", "70");
-superHeroeContainer.addSuperHeroe(5,"Thor", "Marvel", "Hammer", "80");
+superHeroeContainer.addSuperHeroe(1,"Iron Man", "Marvel", "SuperSuit", 50);
+superHeroeContainer.addSuperHeroe(2, "Batman", "DC", "Wealth", 26);
+superHeroeContainer.addSuperHeroe(3, "Aquaman", "DC", "Breathe in water", 40);
+superHeroeContainer.addSuperHeroe(4,"SpiderMan", "Marvel", "Spidersense", 70);
+superHeroeContainer.addSuperHeroe(5,"Thor", "Marvel", "Hammer", 80);
 
 
-superHeroeContainer.mostrarSuperHeroes()
+superHeroeContainer.superheroeMasFuerte();
 
 
