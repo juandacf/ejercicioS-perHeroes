@@ -10,7 +10,7 @@ class superHeroes {
             this.superheroes.set(id, {
               "name":name,
               "universe": universe,
-              "superPower":superPower,
+              "superPower":[superPower],
               "strength": strength });
             }
     }
@@ -22,7 +22,7 @@ class superHeroes {
 
           Nombre = ${superHeroeChosen["name"]}
           Universo =  ${superHeroeChosen["universe"]}
-          Súper poder = ${superHeroeChosen["superPower"]}
+          Súper poderes = ${superHeroeChosen["superPower"]}
           Fuerza = ${superHeroeChosen["strength"]}
           `
         )
@@ -64,7 +64,7 @@ class superHeroes {
     }
     superheroeMasFuerte(){
       var maxValue = 0
-      var superHeroeID = 0
+      var superHeroeID = null
       for(let i=1; i<=this.superheroes.size; i++){
         if(maxValue< this.superheroes.get(i)["strength"]){
           maxValue = this.superheroes.get(i)["strength"];
@@ -73,8 +73,39 @@ class superHeroes {
           continue
         }
       }
-      console.log(`El súperheroe más fuerte es ${this.superheroes.get(superheroeID)["name"]} con una fuerza de ${this.superheroes.get(superHeroeID)["strength"]}`)
+      console.log(`El súperheroe más fuerte es ${this.superheroes.get(superHeroeID)["name"]} con una fuerza de ${this.superheroes.get(superHeroeID)["strength"]}`)
     }
+    combate(id1, id2){
+      const strength1 = this.superheroes.get(id1)['strength'];
+      const strength2 = this.superheroes.get(id2)['strength'];
+
+      if (strength1>strength2){
+        console.log(`${this.superheroes.get(id1)['name']} (fuerza: ${this.superheroes.get(id1)['strength']}) vence a ${this.superheroes.get(id2)['name']} (fuerza: ${this.superheroes.get(id2)['strength']}) `)
+      } else if (strength2>strength1){
+        console.log(`${this.superheroes.get(id2)['name']} (fuerza: ${this.superheroes.get(id2)['strength']}) vence a ${this.superheroes.get(id1)['name']} (fuerza: ${this.superheroes.get(id1)['strength']}) `)
+      } else {
+        console.log ('Ambos superheroes tienen el mismo nivel de fuerza.')
+      }
+    }
+    añadirPodedres(id, poder){
+      if (this.superheroes.has(id)){
+        this.superheroes.get(id)["superPower"].push(poder);
+        console.log(`El poder ${poder} ha sido añadido con éxito al heroe ${this.superheroes.get(id)["name"]}` )
+      } else{
+        console.log("El id ingresado no corresponde con ningún superheroe de nuestros registros.")
+      }
+    }
+    listarPoderes(id){
+      if (this.superheroes.has(id)){
+        console.log(`Los poderes disponibles para el héroe ${this.superheroes.get(id)["name"]} son:`)
+        for(let i=0; i<this.superheroes.get(id)["superPower"].length; i++){
+          console.log(this.superheroes.get(id)["superPower"][i]);
+        }
+      } else {
+        console.log("El id ingresado no corresponde con ningún superheroe de nuestros registros.")
+      }
+    }
+
 }
 
 
@@ -84,9 +115,11 @@ superHeroeContainer.addSuperHeroe(1,"Iron Man", "Marvel", "SuperSuit", 50);
 superHeroeContainer.addSuperHeroe(2, "Batman", "DC", "Wealth", 26);
 superHeroeContainer.addSuperHeroe(3, "Aquaman", "DC", "Breathe in water", 40);
 superHeroeContainer.addSuperHeroe(4,"SpiderMan", "Marvel", "Spidersense", 70);
-superHeroeContainer.addSuperHeroe(5,"Thor", "Marvel", "Hammer", 80);
+superHeroeContainer.addSuperHeroe(5,"Thor", "Marvel", "Hammer", 20);
 
 
-superHeroeContainer.superheroeMasFuerte();
+
+
+
 
 
